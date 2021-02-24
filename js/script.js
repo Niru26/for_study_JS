@@ -29,10 +29,9 @@
 
 //Task 3
 
-// просто дорога false произвольной длины
-//Task 3
-
-// просто дорога false произвольной длины
+/**
+ * создание массива false длинной length
+ */
 let buildRoad = function (length) {
     let road = [];
     for (let i = 0; i < length; i++) {
@@ -40,7 +39,10 @@ let buildRoad = function (length) {
     }
     return road;
 };
-// генерация заданого кол-ва мин на ранее сгенерированной дороге.
+
+/** 
+ * генерация заданого кол-ва мин на ранее сгенерированной дороге
+ */
 let roadMining = function (mine, length) {
 
     const road = buildRoad(length);
@@ -69,6 +71,30 @@ let roadMining = function (mine, length) {
     }
 };
 
-let road = roadMining(3, 10);
+let road = roadMining(2, 10);
+/**
+ * отслеживание перемещения танка по массиву и вывод сообщений о повреждениях.
+ * @param {function} road 
+ */
+function movingObject(road) {
+    let damageCount = 0;
 
-console.log(road);
+    for (let i = 0; i < road.length; i++) {
+        if (road[i] === false) {
+            console.log(`танк переместился на ${i + 1}-ую позицию`);
+        } else {
+            damageCount++;
+        }
+
+        if (damageCount === 1 && road[i] === true) {
+            console.log(`${i + 1}-ая позиция - мина, танк повреждён`);
+        }
+        if (damageCount === 2) {
+            console.log(`танк уничтожен на ${i + 1}-ой позции`)
+            break;
+        }
+    }
+}
+
+console.log(road); // вывод массива - дороги. Для наглядности.
+movingObject(road);
